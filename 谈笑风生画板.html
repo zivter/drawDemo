@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+			
+			#can {
+				width: 100%;
+				height: 800px;
+			}
+			
+			#btn {
+				height: 50px;
+				border-bottom: 1px solid #666;
+				overflow: hidden;
+			}
+			
+			#clear {
+				margin: 15px 0 0 15px;
+				float: left;
+			}
+			
+			#range {
+				margin: 15px 0 0 5px;
+				float: left;
+			}
+			
+			#huabi {
+				float: left;
+				font: 12px/50px "";
+				margin-left: 15px;
+			}
+			
+			#color {
+				float: left;
+				margin: 15px 0 0 15px;
+			}
+			
+			a {
+				float: left;
+				font: 18px/50px "";
+				margin-left: 15px;
+			}
+		</style>
+	</head>
+	<!--(c) Copyright 2017 zivter. All Rights Reserved.-->
+
+	<body>
+		<div id="btn">
+			<button id="clear" onclick="clear()">清屏</button>
+			<span id="huabi">画笔大小:</span>
+			<input type="range" id="range" min="1" max="15" />
+			<input type="color" id="color" />
+		</div>
+		<div id="can"></div>
+
+		<script>
+			var canvas = document.createElement("canvas");
+			document.getElementById("can").appendChild(canvas);
+			canvas.style.backgroundColor = "white";
+			canvas.width = window.innerWidth;
+			canvas.height = 800;
+			var context = canvas.getContext("2d");
+			var particles = [];
+			var timer;
+
+			//清屏
+			function clear() {
+				particles = [];
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				console.log(1)
+			}
+
+			//鼠标动作 画笔
+			var xx;
+			var yy;
+			document.onmousedown = function(e) {
+				var xx = e.clientX;
+				var yy = e.clientY - 50;
+				context.beginPath();
+				context.moveTo(xx, yy);
+				document.onmousemove = function(e) {
+					context.lineTo(e.clientX, e.clientY - 50)
+					context.stroke();
+				}
+			}
+			document.onmouseup = function(e) {
+				document.onmousemove = null;
+			}
+		</script>
+	</body>
+
+</html>
