@@ -23,24 +23,31 @@
 			
 			#btn {
 				height: 50px;
-				border-bottom: 1px solid #666;
 				overflow: hidden;
 			}
 			
 			#clear {
 				margin: 15px 0 0 15px;
 				float: left;
+				border:4px solid #ddd;
+				border-radius: 5px;
+				height:24px;
+				width: 48px;
+				box-shadow: 1px 1px 3px;
+				
 			}
 			
 			#range {
-				margin: 15px 0 0 5px;
+				margin: 18px 0 0 5px;
 				float: left;
+				
 			}
 			
 			#huabi {
 				float: left;
-				font: 12px/50px "";
+				font: 16px/50px "";
 				margin-left: 15px;
+				margin-top: 3px;
 			}
 			
 			#color {
@@ -59,11 +66,11 @@
 
 	<body>
 		<div id="btn">
-			<button id="clear" onclick="clear()">清屏</button>
+			<button id="clear" onclick="clearr()">清屏</button>
 			<span id="huabi">画笔大小:</span>
-			<input type="range" id="range" min="1" max="25" />
+			<input type="range" id="range" min="1" max="25" value="5"/>
 			<input type="color" id="color" />
-			<button onclick="save()">保存</button>
+			<!--<button onclick="save()">保存</button>-->
 		</div>
 		<div id="can"></div>
 
@@ -74,21 +81,19 @@
 			canvas.width = window.innerWidth;
 			canvas.height = 800;
 			var context = canvas.getContext("2d");
-			var particles = [];
 			var timer;
 			
-			function save(){
-				var strDataURI = context.toDataURL();
-				var oImgPNG = Canvas2Image.saveAsPNG(context, true);
-				Canvas2Image.saveAsPNG(context, false, 100, 100);
-				
-			}
+//			function save(){
+//				var strDataURI = context.toDataURL();
+//				var oImgPNG = Canvas2Image.saveAsPNG(context, true);
+//				Canvas2Image.saveAsPNG(context, false, 100, 100);
+//				
+//			}
 			
 			//清屏
-			function clear() {
-				particles = [];
-				context.clearRect(0, 0, canvas.width, canvas.height);
+			function clearr() {
 				console.log(1)
+				context.clearRect(0, 0, canvas.width, canvas.height);
 			}
 
 			//鼠标动作 画笔
@@ -106,6 +111,7 @@
 				document.onmousemove = function(e) {
 					context.lineTo(e.clientX, e.clientY - 50)
 					context.stroke();
+					
 				}
 			}
 			document.onmouseup = function(e) {
