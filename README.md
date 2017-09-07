@@ -1,7 +1,12 @@
 # drawDemo
 [demo链接](http://htmlpreview.github.io/?https://github.com/zivter/drawDemo/blob/master/index.html)
-![icon](img/draw.png)
+![icon](https://github.com/zivter/drawDemo/blob/master/img/draw.png)
 ***
+
+####Beta 1.3
+1. 添加手表画笔样式
+2. 修改清屏button样式
+
 
 ####Beta 1.2
 1. 重新添加画笔样式选择
